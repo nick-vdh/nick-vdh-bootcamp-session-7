@@ -102,8 +102,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ inputs.run_terraform_plan }}
     permissions:
-      id-token: write
       contents: read
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
