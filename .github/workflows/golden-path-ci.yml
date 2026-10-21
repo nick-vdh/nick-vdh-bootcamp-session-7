@@ -123,6 +123,11 @@ jobs:
           sudo install terraform /usr/local/bin/terraform
           terraform version
 
+      - name: Update provider for OIDC
+        working-directory: infra/stacks/dev
+        run: |
+          sed -i '/access_key\|secret_key\|skip_credentials_validation\|skip_metadata_api_check\|skip_region_validation\|skip_requesting_account_id/d' main.tf
+
       - name: Terraform init and plan
         working-directory: infra/stacks/dev
         run: |
@@ -199,7 +204,7 @@ jobs:
       - name: Update provider for OIDC
         working-directory: infra/stacks/dev
         run: |
-          sed -i '/skip_credentials_validation\|skip_metadata_api_check\|skip_region_validation\|skip_requesting_account_id/d' main.tf
+          sed -i '/access_key\|secret_key\|skip_credentials_validation\|skip_metadata_api_check\|skip_region_validation\|skip_requesting_account_id/d' main.tf
 
       - name: Terraform init with S3 backend
         working-directory: infra/stacks/dev
